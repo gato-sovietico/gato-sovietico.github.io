@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repostería Virtual | Postres en Casa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rosa: #f8b4c4;
+      --rosa-oscuro: #e88a9e;
+      --crema: #fff8f0;
+      --chocolate: #5c3a2e;
+      --caramelo: #d4a373;
+      --blanco: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--crema);
+      color: var(--chocolate);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--rosa), #ffd6e0);
+      padding: 1.2rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--chocolate);
+    }
+
+    .logo span {
+      color: var(--rosa-oscuro);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--chocolate);
+      margin-left: 1.8rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--rosa-oscuro);
+    }
+
+    /* Hero */
+    .hero {
+      height: 85vh;
+      background: linear-gradient(rgba(255,248,240,0.7), rgba(255,248,240,0.85)),
+                  url('https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1600&q=80') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      color: var(--chocolate);
+    }
+
+    .hero-content p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--rosa-oscuro);
+      color: white;
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--chocolate);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* Secciones */
+    section {
+      padding: 5rem 8%;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--chocolate);
+    }
+
+    /* Categorías */
+    .categorias {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .categoria {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+      transition: transform 0.3s;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .categoria:hover {
+      transform: translateY(-8px);
+    }
+
+    .categoria img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .categoria h3 {
+      padding: 1.2rem;
+      font-size: 1.2rem;
+    }
+
+    /* Recetas */
+    .recetas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .receta {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .receta img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .receta-content {
+      padding: 1.5rem;
+    }
+
+    .receta h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .tiempo {
+      color: var(--rosa-oscuro);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .ingredientes, .pasos {
+      margin-top: 1rem;
+    }
+
+    .ingredientes h4, .pasos h4 {
+      margin-bottom: 0.5rem;
+      color: var(--caramelo);
+    }
+
+    .ingredientes ul, .pasos ol {
+      padding-left: 1.3rem;
+      font-size: 0.95rem;
+    }
+
+    /* Consejos */
+    .consejos {
+      background: linear-gradient(135deg, #fff0f5, #fff8f0);
+      border-radius: 30px;
+      padding: 3rem;
+    }
+
+    .consejos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .consejo {
+      background: white;
+      padding: 1.8rem;
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .consejo h3 {
+      margin-bottom: 0.7rem;
+      color: var(--rosa-oscuro);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--chocolate);
+      color: white;
+      text-align: center;
+      padding: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    footer p {
+      opacity: 0.85;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.3rem;
+      }
+      nav {
+        display: none; /* Puedes agregar menú hamburguesa después */
+      }
+      header {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">Repostería <span>Virtual</span></div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#categorias">Categorías</a>
+      <a href="#recetas">Recetas</a>
+      <a href="#consejos">Consejos</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <h1>Haz postres deliciosos en casa</h1>
+      <p>Aprende paso a paso, con recetas fáciles, claras y perfectas para principiantes y expertos.</p>
+      <a href="#recetas" class="btn">Ver recetas</a>
+    </div>
+  </section>
+
+  <!-- Categorías -->
+  <section id="categorias">
+    <h2 class="section-title">Categorías de postres</h2>
+    <div class="categorias">
+      <div class="categoria">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="Pasteles">
+        <h3>Pasteles</h3>
+      </div>
+      <div class="categoria">
+        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80" alt="Galletas">
+        <h3>Galletas</h3>
+      </div>
+      <div class="categoria">
+        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=600&q=80" alt="Postres fríos">
+        <h3>Postres fríos</h3>
+      </div>
+      <div class="categoria">
+        <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" alt="Brownies">
+        <h3>Brownies & más</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recetas -->
+  <section id="recetas">
+    <h2 class="section-title">Recetas para hacer en casa</h2>
+    <div class="recetas">
+
+      <!-- Receta 1 -->
+      <div class="receta">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80" alt="Pastel de chocolate">
+        <div class="receta-content">
+          <h3>Pastel de Chocolate Esponjoso</h3>
+          <span class="tiempo">⏱ 50 minutos | 🍰 8 porciones</span>
+          
+          <div class="ingredientes">
+            <h4>Ingredientes:</h4>
+            <ul>
+              <li>200g de harina</li>
+              <li>180g de azúcar</li>
+              <li>50g de cacao en polvo</li>
+              <li>2 huevos</li>
+              <li>150ml de leche</li>
+              <li>100ml de aceite</li>
+              <li>1 cucharadita de polvo de hornear</li>
+            </ul>
+          </div>
+
+          <div class="pasos">
+            <h4>Pasos:</h4>
+            <ol>
+              <li>Precalienta el horno a 180°C.</li>
+              <li>Mezcla los ingredientes secos en un bowl.</li>
+              <li>Agrega los huevos, leche y aceite. Bate hasta integrar.</li>
+              <li>Vierte en un molde engrasado y hornea 35-40 minutos.</li>
+              <li>Deja enfriar y decora a tu gusto.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Receta 2 -->
+      <div class="receta">
+        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=800&q=80" alt="Galletas de mantequilla">
+        <div class="receta-content">
+          <h3>Galletas de Mantequilla Caseras</h3>
+          <span class="tiempo">⏱ 30 minutos | 🍪 20 galletas</span>
+          
+          <div class="ingredientes">
+            <h4>Ingredientes:</h4>
+            <ul>
+              <li>200g de harina</li>
+              <li>100g de mantequilla</li>
+              <li>80g de azúcar</li>
+              <li>1 yema de huevo</li>
+              <li>1 cucharadita de vainilla</li>
+            </ul>
+          </div>
+
+          <div class="pasos">
+            <h4>Pasos:</h4>
+            <ol>
+              <li>Mezcla la mantequilla con el azúcar hasta cremoso.</li>
+              <li>Agrega la yema y la vainilla.</li>
+              <li>Incorpora la harina hasta formar una masa.</li>
+              <li>Forma bolitas, aplánalas y hornea a 170°C por 12-15 min.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Receta 3 -->
+      <div class="receta">
+        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=800&q=80" alt="Brownie">
+        <div class="receta-content">
+          <h3>Brownie Húmedo de Chocolate</h3>
+          <span class="tiempo">⏱ 40 minutos | 🍫 12 porciones</span>
+          
+          <div class="ingredientes">
+            <h4>Ingredientes:</h4>
+            <ul>
+              <li>150g de chocolate negro</li>
+              <li>120g de mantequilla</li>
+              <li>150g de azúcar</li>
+              <li>3 huevos</li>
+              <li>80g de harina</li>
+              <li>Pizca de sal</li>
+            </ul>
+          </div>
+
+          <div class="pasos">
+            <h4>Pasos:</h4>
+            <ol>
+              <li>Derrite el chocolate con la mantequilla.</li>
+              <li>Agrega el azúcar y los huevos uno a uno.</li>
+              <li>Incorpora la harina y la sal.</li>
+              <li>Hornea a 180°C durante 25-28 minutos.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Consejos -->
+  <section id="consejos">
+    <div class="consejos">
+      <h2 class="section-title">Consejos para hornear en casa</h2>
+      <div class="consejos-grid">
+        <div class="consejo">
+          <h3>🌡️ Temperatura correcta</h3>
+          <p>Siempre precalienta el horno. Una temperatura incorrecta es la causa #1 de fallos en repostería.</p>
+        </div>
+        <div class="consejo">
+          <h3>⚖️ Pesa los ingredientes</h3>
+          <p>Usar báscula da resultados mucho más precisos que las tazas, especialmente con harina.</p>
+        </div>
+        <div class="consejo">
+          <h3>🥚 Ingredientes a temperatura ambiente</h3>
+          <p>Huevos, mantequilla y leche fríos no se integran bien. Sácalos 30-40 minutos antes.</p>
+        </div>
+        <div class="consejo">
+          <h3>⏳ No abras el horno</h3>
+          <p>Evita abrir la puerta durante los primeros 20-25 minutos para que no se baje el bizcocho.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Repostería Virtual — Hecho con ❤️ para que cocines postres deliciosos en casa</p>
+  </footer>
+
+</body>
+</html>
